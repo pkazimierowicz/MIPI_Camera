@@ -183,7 +183,6 @@ int main(int argc, char **argv) {
     else
         LOG("Current red is %d", red);
     
-
     //LOG("Stop preview...");
     //res = arducam_stop_preview(camera_instance);
     //if (res) {
