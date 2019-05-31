@@ -51,12 +51,12 @@ int main(int argc, char **argv) {
 
     if(argc < 3){
         LOG("Please provide parameters");
-        LOG("./mipi_capture [exposure] [gain] [focus] [blue] [red] [filename] ");
+        LOG("./mipi_capture [exposure] [gain] [focus] [filename] ");
         LOG("exposure     min: 0   max: 65535   default: 1606");
         LOG("gain         min: 0   max: 4059    default: 0");
         LOG("focus        min: 0   max: 1000    default: 0");
-        LOG("RED  WB      min: 0   max: 4095    default: 1664");
-        LOG("BLUE WB      min: 0   max: 4095    default: 1664");
+        //LOG("RED  WB      min: 0   max: 4095    default: 1664");
+        //LOG("BLUE WB      min: 0   max: 4095    default: 1664");
         return -1;
     }
 
@@ -78,20 +78,20 @@ int main(int argc, char **argv) {
     else 
         focus = focusParam;
 
-    int blueParam;
+    /*int blueParam;
     if (sscanf (argv[4], "%i", &blueParam) != 1) 
         LOG("error - not an integer %d", blueParam);
     else 
-        blue = blueParam;
+        blue = blueParam;*/
 
-    int redParam;
+    /*int redParam;
     if (sscanf (argv[5], "%i", &redParam) != 1) 
         LOG("error - not an integer %d", redParam);
     else 
-        red = redParam;
+        red = redParam;*/
 
     char file_nameParam[100];
-    if (sscanf (argv[6], "%s", &file_nameParam) != 1) 
+    if (sscanf (argv[4], "%s", &file_nameParam) != 1) 
         LOG("error - not a string %s", file_nameParam);
     else{
         memcpy(file_name, file_nameParam, strlen(file_nameParam)+1);
@@ -164,12 +164,12 @@ int main(int argc, char **argv) {
     if (arducam_reset_control(camera_instance, V4L2_CID_BLUE_BALANCE))
         LOG("Failed to reset blue balance, the camera may not support this control.");
     
-
+/*
     res = arducam_set_control(camera_instance, V4L2_CID_BLUE_BALANCE, blue);
     if (res)
         LOG("set blue status = %d", res);   
     else 
-        LOG("Current blue is %d", blue);
+        LOG("Current blue is %d", blue);*/
     
 
     LOG("Reset the red balance...");
@@ -177,11 +177,11 @@ int main(int argc, char **argv) {
         LOG("Failed to reset red balance, the camera may not support this control.");
     
 
-    res = arducam_set_control(camera_instance, V4L2_CID_RED_BALANCE, red);
+    /*res = arducam_set_control(camera_instance, V4L2_CID_RED_BALANCE, red);
     if (res)
         LOG("set red status = %d", res);
     else
-        LOG("Current red is %d", red);
+        LOG("Current red is %d", red);*/
     
 
     //LOG("Stop preview...");
