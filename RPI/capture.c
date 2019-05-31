@@ -91,7 +91,7 @@ int main(int argc, char **argv) {
         red = redParam;
 
     char file_nameParam[100];
-    if (sscanf (argv[4], "%s", &file_nameParam) != 1) 
+    if (sscanf (argv[6], "%s", &file_nameParam) != 1) 
         LOG("error - not a string %s", file_nameParam);
     else{
         memcpy(file_name, file_nameParam, strlen(file_nameParam)+1);
