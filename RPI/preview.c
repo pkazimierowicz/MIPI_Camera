@@ -51,7 +51,7 @@ int main(int argc, char **argv) {
 
     if(argc < 3){
         LOG("Please provide parameters");
-        LOG("./mipi_capture [exposure] [gain] [focus] [filename] ");
+        LOG("./mipi_capture [exposure] [gain] [focus] ");
         LOG("exposure     min: 0   max: 65535   default: 1606");
         LOG("gain         min: 0   max: 4059    default: 1024");
         LOG("focus        min: 0   max: 1000    default: 0");
@@ -90,19 +90,6 @@ int main(int argc, char **argv) {
     else 
         red = redParam;
 
-    char file_nameParam[100];
-    if (sscanf (argv[6], "%s", &file_nameParam) != 1) 
-        LOG("error - not a string %s", file_nameParam);
-    else{
-        memcpy(file_name, file_nameParam, strlen(file_nameParam)+1);
-        
-        if(strcmp(file_name, "-") == 0){
-            stdOut = 1;
-            LOG("will dump the image to stdout");
-        }
-        else
-            LOG("output filename: %s", file_name);
-    }
     LOG("Open camera...");
     int res = arducam_init_camera(&camera_instance);
     if (res) {
@@ -110,8 +97,8 @@ int main(int argc, char **argv) {
         return -1;
     }
 
-    width = 4192;
-    height = 3120;
+    width = 1920;
+    height = 1080;
     LOG("Setting the resolution...");
     res = arducam_set_resolution(camera_instance, &width, &height);
     if (res) {
