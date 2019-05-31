@@ -8,7 +8,7 @@ OLIB	:= lib
 %.o : %.c
 	$(CC) $(CFLAGS) -c -o $@ $<
 
-all: preview capture video list_format
+all: preview capture capture_raw video list_format
 
 preview: preview.c
 	$(CC) $(LDFLAGS) $(CFLAGS) -o $@ $^ $(LIBS)
